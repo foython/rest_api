@@ -16,6 +16,7 @@ STATUS = (
 class Order(AbstractBaseModel):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)   
     status = models.CharField(max_length=10, choices=STATUS, default='ACTIVE')
+    total = models.DecimalField(max_digits=10, decimal_places=2)
     products = models.ManyToManyField(Product, through='OrderItem', related_name='orders')
     
    
@@ -32,4 +33,6 @@ class OrderItem(AbstractBaseModel):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name} in Order #{self.order.id}"
+    
+
     

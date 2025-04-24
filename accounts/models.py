@@ -23,15 +23,11 @@ class CustomUser(AbstractUser):
     role = models.CharField(max_length=20, choices=ROLES, default='CUSTOMER')
     
     def user_role(self):
-        return self.user.role
+        return self.role
     
     
     
     
-class Vendor(AbstractBaseModel):
-    name = models.CharField(max_length=128)
-    mobile = models.CharField(max_length=15)
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+
     
-    def __str__(self):
-        return self.name
+    
