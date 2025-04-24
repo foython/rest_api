@@ -17,7 +17,8 @@ class Order(AbstractBaseModel):
     customer = models.ForeignKey(User, on_delete=models.CASCADE)   
     status = models.CharField(max_length=10, choices=STATUS, default='ACTIVE')
     products = models.ManyToManyField(Product, through='OrderItem', related_name='orders')
-
+    
+   
     def __str__(self):
          return f"Order #{self.id} - {self.customer}"
 
@@ -31,3 +32,4 @@ class OrderItem(AbstractBaseModel):
 
     def __str__(self):
         return f"{self.quantity} x {self.product.name} in Order #{self.order.id}"
+    
